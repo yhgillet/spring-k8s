@@ -17,3 +17,7 @@ spring:
     url: jdbc:postgresql://localhost:6432/chuck
     username: postgres
     password: postgres
+    hikari:
+      register-mbeans: true
+  jpa:
+    open-in-view: false

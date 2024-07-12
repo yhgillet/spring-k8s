@@ -1,0 +1,23 @@
+init_config:
+
+instances:
+  - name: jmx_pbc_db_metrics
+    jvm_direct: true
+    collect_default_jvm_metrics: true
+    conf:
+      - include:
+          domain: com.zaxxer.hikari
+          type: Pool (HikariPool-1)
+          attribute:
+            ActiveConnections:
+              alias: db.pool.active_connections
+              metric_type: gauge
+            IdleConnections:
+              alias: db.pool.idle_connections
+              metric_type: gauge
+            TotalConnections:
+              alias: db.pool.total_connections
+              metric_type: gauge
+            ThreadsAwaitingConnection:
+              alias: db.pool.threads_awaiting_connections
+              metric_type: gauge
