@@ -1,0 +1,1 @@
+ docker run -p '6432:5432' --name chucknorris-database chucknorrisio/postgres

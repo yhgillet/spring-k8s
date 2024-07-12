@@ -1,0 +1,19 @@
+server:
+  shutdown: graceful
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
+spring:
+  application:
+    name: chuck-service
+  datasource:
+    url: jdbc:postgresql://localhost:6432/chuck
+    username: postgres
+    password: postgres
