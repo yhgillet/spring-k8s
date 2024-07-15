@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: chuck-db
+  labels:
+    app.kubernetes.io/name: chuck-db
+spec:
+  serviceName: chuck-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chuck-db
+  template:
+    metadata:
+      labels:
+        app: chuck-db
+        app.kubernetes.io/name: chuck-db
+    spec:
+      containers:
+        - name: chuck-db
+          image: chuckdb:0.1
+          # imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          volumeMounts:
+            - name: pg-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: pg-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chuck-db
+spec:
+  selector:
+    app.kubernetes.io/name: chuck-db
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

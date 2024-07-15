@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chuck-service
+  labels:
+    app: spring-k8s
+    app.kubernetes.io/name: chuck-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: chuck-service
+  template:
+    metadata:
+      labels:
+        app: chuck-service
+        app.kubernetes.io/name: chuck-service
+    spec:
+      containers:
+        - name: chuck-service
+          image: chuck-service:0.0.1-SNAPSHOT
+          ports:
+            - containerPort: 8080
+          env:
+            - name: LOGGING_LEVEL_ROOT
+              value: INFO
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://chuck-db:5432/chuck
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chuck-service
+spec:
+  selector:
+    app: chuck-service
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
