@@ -105,7 +105,6 @@
                         </bindings>
                         <env>
                             <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
-                            <BP_DATADOG_ENABLED>true</BP_DATADOG_ENABLED>
                             <BPE_DELIM_JAVA_TOOL_OPTIONS xml:space="preserve"> </BPE_DELIM_JAVA_TOOL_OPTIONS>
                             <!--                            <BP_JVM_CDS_ENABLED>true</BP_JVM_CDS_ENABLED>-->
                             <!--                            <BP_SPRING_AOT_ENABLED>true</BP_SPRING_AOT_ENABLED>-->
