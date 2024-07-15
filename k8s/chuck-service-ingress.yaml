@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chuck-service-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: chuck-service.spring-k8s
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: chuck-service
+                port:
+                  number: 8080

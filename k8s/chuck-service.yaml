@@ -22,10 +22,21 @@ spec:
           ports:
             - containerPort: 8080
           env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: default
+              #value: immediate
             - name: LOGGING_LEVEL_ROOT
               value: INFO
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://chuck-db:5432/chuck
+          livenessProbe:
+            httpGet:
+              path: "/actuator/health/liveness"
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: "/actuator/health/readiness"
+              port: 8080
 ---
 apiVersion: v1
 kind: Service
