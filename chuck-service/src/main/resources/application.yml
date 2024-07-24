@@ -21,3 +21,6 @@ spring:
       register-mbeans: true
   jpa:
     open-in-view: false
+  threads:
+    virtual:
+      enabled: true
